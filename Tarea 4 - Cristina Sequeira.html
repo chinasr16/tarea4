@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <style>
+    body {
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 30px;
+    }   
+    h1,
+    p {
+        text-align: center;
+    }
+    
+    .button {
+        background-color: #555555;
+        border: none;
+        color: white;
+        padding: 6px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+    }
+    
+    #add {
+        height: 130px;
+    }
+    
+    #displayObjects {
+        height: 50px;
+        display: block;
+    }
+    
+    .text {
+        border-radius: 8px;
+        padding-bottom: 8px;
+        margin-top: 30px;
+        border: none;
+        border-bottom: 2px solid #ccc;
+        width: 30%;
+        font-size: 14px;
+    }
+    
+    .select {
+        width: 15%;
+        padding: 5px;
+        font-size: 15px;
+        border-radius: 0;
+        height: 32px;
+    }
+    
+    fieldset {
+        width: 30%;
+        display: inline-flex;
+    }
+    </style>
+    <script>
+    window.onload = counter; // contador de objetos en array
+    var array = new Array();
+    ////////////////////////////////////////////////////////////////////////
+    function counter() {
+        var div = document.getElementById("count");
+        div.textContent = "Amount of objects in Array: " + array.length;
+    }
+    ////////////////////////////////////////////////////////////////////////
+    function addObjects(objetos) {  
+        var nameVal = document.getElementById('name').value;
+        if (nameVal === '') {
+            alert("The object should have at least a name. Please try again.");
+
+        } else if (fields === 2) {
+            var name = objetos.childNodes[1].value;
+            var property = objetos.childNodes[3].value;
+            array.push({
+                "name": name,
+                "property": property
+            });
+            counter();
+        } else if (fields === 3) {
+            var name = objetos.childNodes[1].value;
+            var property = objetos.childNodes[3].value;
+            var property2 = objetos.childNodes[5].value;
+            array.push({
+                "name": name,
+                "property": property,
+                "property2": property2
+            });
+            counter();
+        } else if (fields === 4) {
+            var name = objetos.childNodes[1].value;
+            var property = objetos.childNodes[3].value;
+            var property2 = objetos.childNodes[5].value;
+            var property3 = objetos.childNodes[6].value;
+            array.push({
+                "name": name,
+                "property": property,
+                "property2": property2,
+                "property3": property3
+            });
+            counter();
+        } else if (fields === 5) {
+            var name = objetos.childNodes[1].value;
+            var property = objetos.childNodes[3].value;
+            var property2 = objetos.childNodes[5].value;
+            var property3 = objetos.childNodes[6].value;
+            var property4 = objetos.childNodes[7].value;
+            array.push({
+                "name": name,
+                "property": property,
+                "property2": property2,
+                "property3": property3,
+                "property4": property4
+            });
+            counter();
+        } else if (fields === 6) {
+            var name = objetos.childNodes[1].value;
+            var property = objetos.childNodes[3].value;
+            var property2 = objetos.childNodes[5].value;
+            var property3 = objetos.childNodes[6].value;
+            var property4 = objetos.childNodes[7].value;
+            var property5 = objetos.childNodes[8].value;
+            array.push({
+                "name": name,
+                "property": property,
+                "property2": property2,
+                "property3": property3,
+                "property4": property4,
+                "property5": property5
+            });
+            counter();
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    //Añadimos inputs para que el user agregue cuantas properties quiera
+    var fields = 2; // inicializamos la variable de numero de propiedades
+    function addInput() {
+        if (fields < 6) {
+            var property = "property" + fields;
+            var placeholder = "Property " + fields;
+            document.getElementById('add').innerHTML += "<input type='text' class='text' id='" + property + "' placeholder='" + placeholder + "'/>";
+            fields += 1;
+        } else {
+            document.getElementById("ButtonProperty").disabled = true;
+        }
+    }
+    ////////////////////////////////////////////////////////////////////////
+    function DisplayArray() {
+        var content = document.getElementById("display-array");
+        while (content.hasChildNodes() == true) { //Eliminamos todo lo que hay en pantalla, del objeto y lo generaremos de nuevo.
+            content.removeChild(content.childNodes[0])
+        }
+        for (var i = 0; i < array.length; i++) { //Para cada elemento existente en la array
+            var div = document.createElement("fieldset");
+            div.className = "muestra-objeto"
+            var position = document.createElement("div");
+            position.textContent = "Position on Array: " + i;
+            div.appendChild(position);
+            div.appendChild(document.createElement("hr"));
+            var divname = document.createElement("div");
+            divname.textContent = "Name: " + array[i].name;
+            div.appendChild(divname);
+            div.appendChild(document.createElement("hr"));
+            if (fields === 2) {
+                var divproperty = document.createElement("div");
+                divproperty.textContent = "Property: " + array[i].property;
+                div.appendChild(divproperty);
+            } else if (fields === 3) {
+                var divproperty = document.createElement("div");
+                divproperty.textContent = "Property: " + array[i].property;
+                div.appendChild(divproperty)
+                var divproperty2 = document.createElement("div");
+                divproperty2.textContent = "Property 2: " + array[i].property2;
+                div.appendChild(divproperty2);
+            } else if (fields === 4) {
+                var divproperty = document.createElement("div");
+                divproperty.textContent = "Property: " + array[i].property;
+                div.appendChild(divproperty)
+                var divproperty2 = document.createElement("div");
+                divproperty2.textContent = "Property 2: " + array[i].property2;
+                div.appendChild(divproperty2);
+                var divproperty3 = document.createElement("div");
+                divproperty3.textContent = "Property 3: " + array[i].property3;
+                div.appendChild(divproperty3);
+            } else if (fields === 5) {
+                var divproperty = document.createElement("div");
+                divproperty.textContent = "Property: " + array[i].property;
+                div.appendChild(divproperty)
+                var divproperty2 = document.createElement("div");
+                divproperty2.textContent = "Property 2: " + array[i].property2;
+                div.appendChild(divproperty2);
+                var divproperty3 = document.createElement("div");
+                divproperty3.textContent = "Property 3: " + array[i].property3;
+                div.appendChild(divproperty3);
+                var divproperty4 = document.createElement("div");
+                divproperty4.textContent = "Property 4: " + array[i].property4;
+                div.appendChild(divproperty4);
+            } else if (fields === 6) {
+                var divproperty = document.createElement("div");
+                divproperty.textContent = "Property: " + array[i].property;
+                div.appendChild(divproperty)
+                var divproperty2 = document.createElement("div");
+                divproperty2.textContent = "Property 2: " + array[i].property2;
+                div.appendChild(divproperty2);
+                var divproperty3 = document.createElement("div");
+                divproperty3.textContent = "Property 3: " + array[i].property3;
+                div.appendChild(divproperty3);
+                var divproperty4 = document.createElement("div");
+                divproperty4.textContent = "Property 4: " + array[i].property4;
+                div.appendChild(divproperty4);
+                var divproperty5 = document.createElement("div");
+                divproperty5.textContent = "Property 5: " + array[i].property5;
+                div.appendChild(divproperty5);
+            }
+            content.appendChild(div);
+        }
+    }
+    ////////////////////////////////////////////////////////////////////////
+    function deleteObject(objetos) {
+        var value = objetos.childNodes[1].value;
+        var filter = (objetos.childNodes[3].value).toLowerCase();
+        var array1 = new Array();
+        var deleteVal = document.getElementById('value').value;
+        if (deleteVal === '') {
+            alert("Add the name or property of the object you'll like to delete.");
+        } else {
+            for (var i = 0; i < array.length; i++) {
+                if (array[i][filter] != value) {
+                    array1.push(array[i]);
+                }
+            }
+            if (array.length == array1.length) {
+                alert("The name or value should match the data in the array. Please try again");
+            }
+            array = array1;
+            DisplayArray();
+            counter();
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <h1>Object Generator</h1>
+    <p id="count"> </p>
+    <div>
+        <hr>
+        <div id="addObjectss">
+            <div id="add">
+                <input class="text" type="text" placeholder="Name" id="name" />
+                <input type="text" class="text" placeholder="Property 1" id="property1" />
+            </div>
+            <input type="button" class="button" id="ButtonProperty" value="Add property" onclick="addInput(document.getElementById('add'))" />
+            <input type="button" class="button" value="Add Object" onclick="addObjects(document.getElementById('add'))" />
+        </div>
+        <hr>
+        <div id="displayObjects">
+            <input type="button" class="button" value="View Objects" onclick="DisplayArray(document.getElementById('displayObjects'))" />
+        </div>
+        <div id="display-array"></div>
+        <hr>
+        <div id="deleteObjects">
+            <input type="text" class="text" placeholder="Property" id="value" />
+            <select class="select">
+                <option>Name</option>
+                <option>Property</option>
+            </select>
+            <input type="button" class="button" value="Delete Objects" onclick="deleteObject(document.getElementById('deleteObjects'))" />
+        </div>
+        <hr>
+    </div>
+</body>
+
+</html>
